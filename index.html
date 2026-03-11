@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alibaba Keyword & Title Finder</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.14.0"
+        }
+      }
+    </script>
+    <script type="module" src="index.tsx"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Alibaba B2B Keyword & Title Strategist</h1>
+        <p>
+          Analyze products with text or images to uncover targeted keywords and
+          optimized titles for your Alibaba store.
+        </p>
+      </header>
+      <main>
+        <form id="search-form">
+          <div class="form-row">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="e.g., 'sustainable packaging', 'smart home devices'"
+              aria-label="Industry or Product"
+            />
+            <select id="country-select" aria-label="Select Target Country">
+              <option value="">Target Country (Global)</option>
+              <option value="United States">United States</option>
+              <option value="Germany">Germany</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Brazil">Brazil</option>
+              <option value="India">India</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Australia">Australia</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
+          <div id="image-upload-container">
+            <label for="image-input" id="image-drop-zone">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <span>Upload an image or drag & drop</span>
+            </label>
+            <input
+              type="file"
+              id="image-input"
+              accept="image/png, image/jpeg, image/webp"
+              hidden
+            />
+            <div id="image-preview-container" class="hidden">
+              <img id="image-preview" src="#" alt="Image preview" />
+              <button
+                type="button"
+                id="remove-image-btn"
+                aria-label="Remove image"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+          <button type="submit" id="search-button" aria-label="Search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Generate Insights</span>
+          </button>
+        </form>
+        <div id="results-container" aria-live="polite"></div>
+      </main>
+    </div>
+  </body>
+</html>
